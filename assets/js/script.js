@@ -31,12 +31,16 @@ function getQuotes() {
 	}
 }
 
-getQuotes();
-
-// // TODO: Grab movie quotes for the day if local storage is empty or day has passed due to cap limit(10) hits on the api for a day
-// // Fetch to grab all movie quotes
 
 // TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
+function randomQuotes() {
+	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
+	var randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
+ console.log(randomQuotes)
+}
+
+getQuotes();
+randomQuotes();
 
 //TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
 // fetch("https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=Heres looking at you!&langDest=es&from=en", {
