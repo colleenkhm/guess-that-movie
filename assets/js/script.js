@@ -1,5 +1,7 @@
 // Key used to cycle-translate quote
-const API_KEY = "7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0";
+const lucasKey = "7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0";
+const philipKey = "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651";
+const colleenKey = "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09";
 const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
