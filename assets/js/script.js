@@ -6,6 +6,7 @@ const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
 var titles = [];
+var quote = "";
 
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
@@ -38,7 +39,7 @@ function getQuotes() {
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
 	var correctQuoteIndex = Math.floor(Math.random()*quotes.length);
-	var quote = quotes[correctQuoteIndex].quote;
+	quote = quotes[correctQuoteIndex].quote;
 	titles.push(quotes[correctQuoteIndex].quoteFrom);
 	for(var index = 0; index < 3; index++) {
 		var incorrectTitleIndex = Math.floor(Math.random()*quotes.length);
@@ -46,9 +47,9 @@ function randomQuotes() {
 			incorrectTitleIndex = Math.floor(Math.random()*quotes.length);
 		}
 		titles.push(quotes[incorrectTitleIndex].quoteFrom);
-		console.log(titles[index+1]);
 	}
 	console.log(quote);
+	console.log(titles);
 }
 
 getQuotes();
