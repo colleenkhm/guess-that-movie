@@ -6,7 +6,7 @@ var date = moment().format('DD')
 
 function getQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
-	if (quotes.length === 0) {
+	if (quotes.length === 0 || date > quotes[0].date) {
 		fetch("https://movie-and-tv-shows-quotes.p.rapidapi.com/quotes", {
 			"method": "GET",
 			"headers": {
@@ -20,7 +20,9 @@ function getQuotes() {
 		.then(data => {
 			for(var index = 0; index < data.length; index++){
                 const {quote, quoteFrom} = data[index];
+				quotes.push({date, quote, quoteFrom});
             }
+			localStorage.setItem(QUOTES_STORE, JSON.stringify(quotes));
 		})
 		.catch(err => {
 			console.error(err);
@@ -29,6 +31,7 @@ function getQuotes() {
 }
 
 getQuotes();
+
 // // TODO: Grab movie quotes for the day if local storage is empty or day has passed due to cap limit(10) hits on the api for a day
 // // Fetch to grab all movie quotes
 
