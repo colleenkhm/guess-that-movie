@@ -1,9 +1,13 @@
 // Key used to cycle-translate quote
-const API_KEY = "7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0";
+const lucasKey = "7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0";
+const philipKey = "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651";
+const colleenKey = "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09";
 const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
+var titles = [];
 
+// Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
 	if (quotes.length === 0 || date > quotes[0].date) {
@@ -11,7 +15,7 @@ function getQuotes() {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "movie-and-tv-shows-quotes.p.rapidapi.com",
-				"x-rapidapi-key": API_KEY
+				"x-rapidapi-key": philipKey
 			}
 		})
 		.then(function (response) {
@@ -30,12 +34,25 @@ function getQuotes() {
 	}
 }
 
-getQuotes();
-
-// // TODO: Grab movie quotes for the day if local storage is empty or day has passed due to cap limit(10) hits on the api for a day
-// // Fetch to grab all movie quotes
-
 // TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
+function randomQuotes() {
+	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
+	var correctQuoteIndex = Math.floor(Math.random()*quotes.length);
+	var quote = quotes[correctQuoteIndex].quote;
+	titles.push(quotes[correctQuoteIndex].quoteFrom);
+	for(var index = 0; index < 3; index++) {
+		var incorrectTitleIndex = Math.floor(Math.random()*quotes.length);
+		while(incorrectTitleIndex === correctQuoteIndex) {
+			incorrectTitleIndex = Math.floor(Math.random()*quotes.length);
+		}
+		titles.push(quotes[incorrectTitleIndex].quoteFrom);
+		console.log(titles[index+1]);
+	}
+	console.log(quote);
+}
+
+getQuotes();
+randomQuotes();
 
 //TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
 // fetch("https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=Heres looking at you!&langDest=es&from=en", {
