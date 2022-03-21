@@ -1,5 +1,11 @@
 // Key used to cycle-translate quote
-//const LANG_KEY_ARRAY = [ 'en', 'hi', 'sw', 'en'];
+const LANG_KEY_ARRAY = [ 'en', 'hi', 'sw', 'en'];
+const QUOTES_STORE = "quotesStore"
+
+function getQuotes() {
+	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
+	
+}
 
 
 // // TODO: Grab movie quotes for the day if local storage is empty or day has passed due to cap limit(10) hits on the api for a day
