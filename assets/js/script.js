@@ -38,17 +38,18 @@ function getQuotes() {
 // TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
-	var quoteIndex = Math.floor(Math.random()*quotes.length);
-	var quote = quotes[quoteIndex].quote;
-	titles.push(quotes[quoteIndex].quoteFrom);
+	var correctQuoteIndex = Math.floor(Math.random()*quotes.length);
+	var quote = quotes[correctQuoteIndex].quote;
+	titles.push(quotes[correctQuoteIndex].quoteFrom);
 	for(var index = 0; index < 3; index++) {
-		var num = Math.floor(Math.random()*quotes.length);
-		while(num === quoteIndex) {
-			num = Math.floor(Math.random()*quotes.length);
+		var incorrectTitleIndex = Math.floor(Math.random()*quotes.length);
+		while(incorrectTitleIndex === correctQuoteIndex) {
+			incorrectTitleIndex = Math.floor(Math.random()*quotes.length);
 		}
+		titles.push(quotes[incorrectTitleIndex].quoteFrom);
+		console.log(titles[index+1]);
 	}
 	console.log(quote);
-	console.log(titles[0]);
 }
 
 getQuotes();
