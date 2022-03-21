@@ -1,4 +1,5 @@
 // Key used to cycle-translate quote
+const API_KEY = "7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0";
 const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
@@ -10,20 +11,21 @@ function getQuotes() {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "movie-and-tv-shows-quotes.p.rapidapi.com",
-				"x-rapidapi-key": "7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0"
+				"x-rapidapi-key": API_KEY
 			}
 		})
 		.then(function (response) {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
+			for(var index = 0; index < data.length; index++){
+                const {quote, quoteFrom} = data[index];
+            }
 		})
 		.catch(err => {
 			console.error(err);
 		});
 	}
-
 }
 
 getQuotes();
