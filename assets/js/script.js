@@ -4,9 +4,10 @@ const QUOTES_STORE = "quotesStore"
 
 function getQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
+	var date = moment().format('DD')
+	
 	
 }
-
 
 // // TODO: Grab movie quotes for the day if local storage is empty or day has passed due to cap limit(10) hits on the api for a day
 // // Fetch to grab all movie quotes
