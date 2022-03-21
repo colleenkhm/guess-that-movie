@@ -5,6 +5,7 @@ const colleenKey = "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09";
 const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
+var titles = [];
 
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
@@ -14,7 +15,7 @@ function getQuotes() {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "movie-and-tv-shows-quotes.p.rapidapi.com",
-				"x-rapidapi-key": "4893a70909msh1d3b01b61d29cb4p1fc0c6jsnf048abdff636"
+				"x-rapidapi-key": philipKey
 			}
 		})
 		.then(function (response) {
@@ -37,8 +38,17 @@ function getQuotes() {
 // TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
-	var randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
- console.log(randomQuotes)
+	var quoteIndex = Math.floor(Math.random()*quotes.length);
+	var quote = quotes[quoteIndex].quote;
+	titles.push(quotes[quoteIndex].quoteFrom);
+	for(var index = 0; index < 3; index++) {
+		var num = Math.floor(Math.random()*quotes.length);
+		while(num === quoteIndex) {
+			num = Math.floor(Math.random()*quotes.length);
+		}
+	}
+	console.log(quote);
+	console.log(titles[0]);
 }
 
 getQuotes();
