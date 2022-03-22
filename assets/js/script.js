@@ -2,7 +2,7 @@
 var quoteDisplayed = document.getElementById("translatedQuote");
 var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
-const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
+const LANG_KEY_ARRAY = ['en', 'la', 'sm', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
 var quote = "";
@@ -48,10 +48,7 @@ function randomQuotes() {
 			incorrectTitleIndex = Math.floor(Math.random() * quotes.length);
 		}
 		titles.push(quotes[incorrectTitleIndex].quoteFrom);
-		console.log(titles[index + 1]);
 	}
-	console.log(quote);
-	console.log(titles);
 }
 let titleArray = titles;
 
@@ -72,21 +69,35 @@ function translateQuote() {
 		})
 		.then(data => {
 			quote = data.translated_text;
-			console.log(quote);
 		})
 		.catch(err => {
 			console.error(err);
 		});
 	}
-	console.log(quote);
+}
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
 }
 
 function randomTitles() {
+	console.log(titles);
 	for (var index = 0; index < titleArray.length; index++) {
-		var titleRandom = Math.floor(Math.random() * 4);
-		
+		var correctTitle = titles[0];
+		titles = shuffle(titles);
+		// var titleRandom = Math.floor(Math.random() * 4);
 	}
-	console.log(titleRandom);
+	console.log(titles);
 }
 
 // getQuotes();
@@ -94,7 +105,7 @@ randomQuotes();
 // translateQuote();
 randomTitles();
 quoteDisplayed.innerHTML = quote;
-console.log(titlesDisplayed);
+// console.log(titlesDisplayed);
 titlesDisplayed.innerHTML = titles[1];
 
 
