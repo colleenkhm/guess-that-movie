@@ -1,12 +1,12 @@
 // Key used to cycle-translate quote
-var quoteDisplayed = document.getElementById("translatedQuote");
 var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
-const LANG_KEY_ARRAY = ['en', 'la', 'sm', 'en'];
+const LANG_KEY_ARRAY = ['en', 'es', 'la', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
 var quote = "";
 var titles = [];
+var correctTitle = "";
 
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
@@ -20,19 +20,19 @@ function getQuotes() {
 				"x-rapidapi-key": API_KEY_ARRAY[Math.floor(Math.random()*3)]
 			}
 		})
-			.then(function (response) {
-				return response.json();
-			})
-			.then(data => {
-				for (var index = 0; index < data.length; index++) {
-					const { quote, quoteFrom } = data[index];
-					quotes.push({ date, quote, quoteFrom });
-				}
-				localStorage.setItem(QUOTES_STORE, JSON.stringify(quotes));
-			})
-			.catch(err => {
-				console.error(err);
-			});
+		.then(function (response) {
+			return response.json();
+		})
+		.then(data => {
+			for (var index = 0; index < data.length; index++) {
+				const { quote, quoteFrom } = data[index];
+				quotes.push({ date, quote, quoteFrom });
+			}
+			localStorage.setItem(QUOTES_STORE, JSON.stringify(quotes));
+		})
+		.catch(err => {
+			console.error(err);
+		});
 	}
 }
 
@@ -69,11 +69,14 @@ function translateQuote() {
 		})
 		.then(data => {
 			quote = data.translated_text;
+			console.log(quote);
 		})
 		.catch(err => {
 			console.error(err);
 		});
 	}
+	$("#translatedQuote").html(quote);
+	// quoteDisplayed.innerHTML = quote;
 }
 
 function shuffle(array) {
@@ -91,7 +94,7 @@ function shuffle(array) {
 }
 
 function randomTitles() {
-	var correctTitle = titles[0];
+	correctTitle = titles[0];
 	titles = shuffle(titles);
 	for(var index = 0; index < titles.length; index++) {
 		var btnId = "#answer-" + (index + 1);
@@ -99,19 +102,16 @@ function randomTitles() {
 	}
 }
 
+function validateAnswer(element) {
+	var answer = $(element).text();
+	if(answer === correctTitle) {
+		$(element).addClass("green");
+	} else {$(element).addClass("red");}
+}
 
-// id="answer-1"
 
-// getQuotes();
+getQuotes();
 randomQuotes();
-// translateQuote();
+translateQuote();
 randomTitles();
-quoteDisplayed.innerHTML = quote;
-titlesDisplayed.innerHTML = titles[1];
-
-
-
-
-// TODO: Post translated quote into read-only text-area
-// TODO: Create buttons containing 1 true answer and 3 false answers
-// TODO: Based on user answer indicate whether anser correct or incorrect
+// localStorage.clear();
