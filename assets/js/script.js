@@ -1,5 +1,6 @@
 // Key used to cycle-translate quote
 var quoteDisplayed = document.getElementById("translatedQuote");
+var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
 const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
@@ -52,7 +53,7 @@ function randomQuotes() {
 	console.log(quote);
 	console.log(titles);
 }
-
+let titleArray = titles;
 
 //TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
 function translateQuote() {
@@ -79,10 +80,24 @@ function translateQuote() {
 	}
 	console.log(quote);
 }
+
+function randomTitles() {
+	for (var index = 0; index < titleArray.length; index++) {
+		var titleRandom = Math.floor(Math.random() * 4)
+	}
+	console.log(titleRandom);
+}
+
 // getQuotes();
 randomQuotes();
 // translateQuote();
+randomTitles();
 quoteDisplayed.innerHTML = quote;
+console.log(titlesDisplayed);
+titlesDisplayed.innerHTML = titles[1];
+
+
+
 
 // TODO: Post translated quote into read-only text-area
 // TODO: Create buttons containing 1 true answer and 3 false answers
