@@ -5,6 +5,7 @@ const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
 var quote = "";
 var titles = [];
+var quote = "";
 
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
@@ -34,7 +35,6 @@ function getQuotes() {
 	}
 }
 
-
 // TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
@@ -46,10 +46,11 @@ function randomQuotes() {
 		while (incorrectTitleIndex === correctQuoteIndex) {
 			incorrectTitleIndex = Math.floor(Math.random() * quotes.length);
 		}
-		titles.push(quotes[incorrectTitleIndex].quoteFrom);
+		titles.push(quotes[incorrectTitleIndex].quoteFrom);\
 		console.log(titles[index + 1]);
 	}
 	console.log(quote);
+	console.log(titles);
 }
 
 
