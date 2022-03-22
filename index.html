@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Guess That Movie Quote</title>
@@ -11,13 +13,28 @@
     <h1>Guess That Movie Quote</h1>
   </header>
   <section class="container">
-    <div class="row" id="textViewer">
-      <p id="translatedQuote">Hello</p>
+    <div class="row quote-container" id="textViewer">
+      <p class="quote center-align" id="translatedQuote"></p>
     </div>
-    <div class="row" id="buttonContainer">
-      <button onclick="randomQuotes()">Start</button>
+    <div class="row center-align" id="buttonContainer">
+      <button  class="start-btn hide" onclick="randomQuotes()">Start</button>
+    </div>
+    <div class="row center-align">
+      <div class="col s12">
+        <button class="answers">1.</button>
+      </div>
+      <div class="col s12">
+        <button class="answers">2.</button>
+      </div>
+      <div class="col s12">
+        <button class="answers">Harry Potter</button>
+      </div>
+      <div class="col s12">
+        <button class="answers">4.</button>
+      </div>
     </div>
   </section>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>

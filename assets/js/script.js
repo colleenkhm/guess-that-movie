@@ -1,11 +1,11 @@
 // Key used to cycle-translate quote
+var quoteDisplayed = document.getElementById("translatedQuote");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
 const LANG_KEY_ARRAY = ['en', 'hi', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
 var quote = "";
 var titles = [];
-var quote = "";
 
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
@@ -80,8 +80,9 @@ function translateQuote() {
 	console.log(quote);
 }
 // getQuotes();
-// randomQuotes();
+randomQuotes();
 // translateQuote();
+quoteDisplayed.innerHTML = quote;
 
 // TODO: Post translated quote into read-only text-area
 // TODO: Create buttons containing 1 true answer and 3 false answers

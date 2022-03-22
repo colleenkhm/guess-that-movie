@@ -1,0 +1,31 @@
+* {
+    background-color: darkgrey;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 700;
+    color: rgb(216, 190, 45);
+}
+
+.start-btn {
+    width: 250px;
+    height: 75px;
+    font-size: 30px;
+}
+
+.quote {
+    font-size: 44px;
+    font-style: italic;
+}
+
+.quote-container {
+    padding: 40px 0 0 0;
+}
+
+.answers {
+    width: fit-content;
+    height: 75px;
+    margin: 0 0 40px 0;
+    font-size: 38px;
+}
