@@ -46,7 +46,7 @@ function randomQuotes() {
 		while (incorrectTitleIndex === correctQuoteIndex) {
 			incorrectTitleIndex = Math.floor(Math.random() * quotes.length);
 		}
-		titles.push(quotes[incorrectTitleIndex].quoteFrom);\
+		titles.push(quotes[incorrectTitleIndex].quoteFrom);
 		console.log(titles[index + 1]);
 	}
 	console.log(quote);
@@ -79,9 +79,9 @@ function translateQuote() {
 	}
 	console.log(quote);
 }
-getQuotes();
-randomQuotes();
-translateQuote();
+// getQuotes();
+// randomQuotes();
+// translateQuote();
 
 // TODO: Post translated quote into read-only text-area
 // TODO: Create buttons containing 1 true answer and 3 false answers

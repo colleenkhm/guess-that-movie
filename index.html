@@ -2,8 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Guess That Movie Quote</title>
 </head>
 <body>
+  <header class="center-align">
+    <h1>Guess That Movie Quote</h1>
+  </header>
+  <section class="container">
+    <div class="row" id="textViewer">
+      <p id="translatedQuote">Hello</p>
+    </div>
+    <div class="row" id="buttonContainer">
+      <button onclick="randomQuotes()">Start</button>
+    </div>
+  </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
