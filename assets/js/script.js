@@ -1,10 +1,11 @@
 // Key used to cycle-translate quote
 var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
-const LANG_KEY_ARRAY = ['en', 'es', 'la', 'en'];
+const LANG_KEY_ARRAY = ['en', 'la', 'sw', 'en'];
 const QUOTES_STORE = "quotesStore"
 var date = moment().format('DD')
 var quote = "";
+var request = "";
 var titles = [];
 var correctTitle = "";
 
@@ -39,6 +40,8 @@ function getQuotes() {
 // TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
+	if(quotes.length === 0) {randomQuotes();}
+
 	var correctQuoteIndex = Math.floor(Math.random() * quotes.length);
 	quote = quotes[correctQuoteIndex].quote;
 	titles.push(quotes[correctQuoteIndex].quoteFrom);
@@ -55,8 +58,9 @@ let titleArray = titles;
 //TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
 function translateQuote() {
 	for (var index = 0; index < LANG_KEY_ARRAY.length - 1; index++) {
-
-		var request = "https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=" + quote + "&from=" + LANG_KEY_ARRAY[index] + "&langDest=" + LANG_KEY_ARRAY[index + 1];
+//TODO: Resolve issue where quote is not being translated in the request (keeps feeding En back in)
+		request = "https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=" + quote + "&from=" + LANG_KEY_ARRAY[index] + "&langDest=" + LANG_KEY_ARRAY[index + 1];
+		console.log(request);
 		fetch(request, {
 			"method": "GET",
 			"headers": {
@@ -69,7 +73,7 @@ function translateQuote() {
 		})
 		.then(data => {
 			quote = data.translated_text;
-			console.log(quote);
+			console.log(request);
 		})
 		.catch(err => {
 			console.error(err);
