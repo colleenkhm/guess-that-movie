@@ -91,21 +91,22 @@ function shuffle(array) {
 }
 
 function randomTitles() {
-	console.log(titles);
-	for (var index = 0; index < titleArray.length; index++) {
-		var correctTitle = titles[0];
-		titles = shuffle(titles);
-		// var titleRandom = Math.floor(Math.random() * 4);
+	var correctTitle = titles[0];
+	titles = shuffle(titles);
+	for(var index = 0; index < titles.length; index++) {
+		var btnId = "#answer-" + (index + 1);
+		$(btnId).html(titles[index]);
 	}
-	console.log(titles);
 }
+
+
+// id="answer-1"
 
 // getQuotes();
 randomQuotes();
 // translateQuote();
 randomTitles();
 quoteDisplayed.innerHTML = quote;
-// console.log(titlesDisplayed);
 titlesDisplayed.innerHTML = titles[1];
 
 
