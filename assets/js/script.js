@@ -57,7 +57,9 @@ function randomQuotes() {
 //TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
 function translateQuote() {
 	for (var index = 0; index < LANG_KEY_ARRAY.length - 1; index++) {
-		fetch("https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=" + quote + "&langDest=" + LANG_KEY_ARRAY[index + 1] + "&from=" + LANG_KEY_ARRAY[index], {
+
+		var request = "https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=" + quote + "&from=" + LANG_KEY_ARRAY[index] + "&langDest=" + LANG_KEY_ARRAY[index + 1];
+		fetch(request, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "fast-translate.p.rapidapi.com",
@@ -68,12 +70,14 @@ function translateQuote() {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
+			quote = data.translated_text;
+			console.log(quote);
 		})
 		.catch(err => {
 			console.error(err);
 		});
 	}
+	console.log(quote);
 }
 getQuotes();
 randomQuotes();
