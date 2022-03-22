@@ -83,7 +83,8 @@ function translateQuote() {
 
 function randomTitles() {
 	for (var index = 0; index < titleArray.length; index++) {
-		var titleRandom = Math.floor(Math.random() * 4)
+		var titleRandom = Math.floor(Math.random() * 4);
+		
 	}
 	console.log(titleRandom);
 }
