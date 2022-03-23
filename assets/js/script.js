@@ -3,7 +3,6 @@ var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
 const LANG_KEY_ARRAY = ['en', 'ig', 'en'];
 const QUOTES_STORE = "quotesStore"
-var date = moment().format('DD')
 var quote = "";
 var request = "";
 var titles = [];
@@ -12,8 +11,8 @@ var correctTitle = "";
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
-	if (quotes.length === 0 || date > quotes[0].date) {
-		localStorage.clear();
+	if (quotes.length === 0) {
+	
 		fetch("https://movie-and-tv-shows-quotes.p.rapidapi.com/quotes", {
 			"method": "GET",
 			"headers": {
@@ -27,7 +26,7 @@ function getQuotes() {
 		.then(data => {
 			for (var index = 0; index < data.length; index++) {
 				const { quote, quoteFrom } = data[index];
-				quotes.push({ date, quote, quoteFrom });
+				quotes.push({quote, quoteFrom });
 			}
 			localStorage.setItem(QUOTES_STORE, JSON.stringify(quotes));
 		})
@@ -114,7 +113,7 @@ function validateAnswer(element) {
 }
 
 
-// getQuotes();
+getQuotes();
 // randomQuotes();
 // translateQuote();
 // randomTitles();
