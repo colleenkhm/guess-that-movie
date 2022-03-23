@@ -1,9 +1,8 @@
 // Key used to cycle-translate quote
 var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
-const LANG_KEY_ARRAY = ['en', 'ig', 'en'];
+const LANG_KEY_ARRAY = ['en', 'is', 'es', 'en'];
 const QUOTES_STORE = "quotesStore"
-var date = moment().format('DD')
 var quote = "";
 var request = "";
 var titles = [];
@@ -12,8 +11,8 @@ var correctTitle = "";
 // Fetching movie quotes and storing in local storage, setting parameters for when to call from api, calling "quote" and "quote from" variables
 function getQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
-	if (quotes.length === 0 || date > quotes[0].date) {
-		localStorage.clear();
+	if (quotes.length === 0) {
+	
 		fetch("https://movie-and-tv-shows-quotes.p.rapidapi.com/quotes", {
 			"method": "GET",
 			"headers": {
@@ -27,7 +26,7 @@ function getQuotes() {
 		.then(data => {
 			for (var index = 0; index < data.length; index++) {
 				const { quote, quoteFrom } = data[index];
-				quotes.push({ date, quote, quoteFrom });
+				quotes.push({quote, quoteFrom });
 			}
 			localStorage.setItem(QUOTES_STORE, JSON.stringify(quotes));
 		})
@@ -37,7 +36,7 @@ function getQuotes() {
 	}
 }
 
-// TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
+// Function to get random quote and movie title for question. Plus get 3 random titles for incorrect answer
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
 	if(quotes.length === 0) {randomQuotes();}
@@ -53,36 +52,42 @@ function randomQuotes() {
 		titles.push(quotes[incorrectTitleIndex].quoteFrom);
 	}
 }
-let titleArray = titles;
 
-//TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
-function translateQuote() {
+// Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
+async function translateQuote() {
 	for (var index = 0; index < LANG_KEY_ARRAY.length - 1; index++) {
-//TODO: Resolve issue where quote is not being translated in the request (keeps feeding En back in)
+		console.log(quote);
 		request = "https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=" + quote + "&from=" + LANG_KEY_ARRAY[index] + "&langDest=" + LANG_KEY_ARRAY[index + 1];
 		console.log(request);
-		fetch(request, {
+		const response = await fetch(request, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "fast-translate.p.rapidapi.com",
 				"x-rapidapi-key": API_KEY_ARRAY[index]
 			}
 		})
-		.then(function (response) {
-			return response.json();
-		})
-		.then(data => {
-			quote = data.translated_text;
-			console.log(request);
-		})
-		.catch(err => {
-			console.error(err);
-		});
+		const data = await response.json();
+		quote = data.translated_text;
+		if(quote.includes("<i>") === true){
+			cleanQuote();
+		}
 	}
 	$("#translatedQuote").html(quote);
-	// quoteDisplayed.innerHTML = quote;
 }
 
+// Function to clean broken results from API
+function cleanQuote(){
+	while(quote.includes("<i>")){
+		let iStart = quote.indexOf("<i>");
+		let iEnd = quote.indexOf("</i>") + 4;
+		
+		quote = quote.replace(quote.substring(iStart, iEnd), "");
+	}
+	quote = quote.replace(/<\/?[^>]+(>|$)/g, "");
+	quote = quote.replace("  ", " ");
+}
+
+// Function to shuffle answer options
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
     // While there remain elements to shuffle...
@@ -110,12 +115,13 @@ function validateAnswer(element) {
 	var answer = $(element).text();
 	if(answer === correctTitle) {
 		$(element).addClass("green");
+		location.reload();
 	} else {$(element).addClass("red");}
 }
 
-
-// getQuotes();
-// randomQuotes();
-// translateQuote();
-// randomTitles();
-// localStorage.clear();
+$(document).ready(function(){
+	getQuotes();
+	randomQuotes();
+	translateQuote();
+	randomTitles();
+});

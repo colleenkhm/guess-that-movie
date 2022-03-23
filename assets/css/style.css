@@ -10,30 +10,40 @@ h1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.start-btn {
-    width: 250px;
-    height: 75px;
-    font-size: 25px;
-}
-
 .quote {
     font-size: 45px;
     font-style: italic;
+    font-weight: bolder;
     color: lavender;
 }
 
 .quote-container {
     padding: 30px 0 0 0;
+    background-image: url("../images/tv.jpg");
+    background-size: cover;
+    height: 650px;
+    width: 800px;
 }
 
-.answers {
-    width: fit-content;
-    height: 40px;
-    margin: 0 0 40px 0;
+.quote-container div{
+    margin: 50px 100px auto;
+    max-height: 80%;
+}
+
+.answers{
+    background-image: url("../images/woodgrain-1889.svg");
+    background-size: cover;
+    border: black solid 3px;
+    height: fit-content;
+}
+.answers div button{
+    width: 50%;
+    height: fit-content;
+    margin: 10px 0;
     font-size: 20px;
-    background: black;
-    color: lavender;
-    border: whitesmoke solid 1px;
+    background-color: darkgoldenrod;
+    color: rgb(65, 2, 65);
+    border: black solid 3px;
     border-radius: 4px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
