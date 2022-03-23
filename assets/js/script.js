@@ -78,7 +78,6 @@ async function translateQuote() {
 // Function to clean broken results from API
 function cleanQuote(){
 	while(quote.includes("<i>")){
-		console.log(quote.includes("<i>"));
 		let iStart = quote.indexOf("<i>");
 		let iEnd = quote.indexOf("</i>") + 4;
 		
@@ -106,7 +105,6 @@ function shuffle(array) {
 function randomTitles() {
 	correctTitle = titles[0];
 	titles = shuffle(titles);
-	console.log(titles);
 	for(var index = 0; index < titles.length; index++) {
 		var btnId = "#answer-" + (index + 1);
 		$(btnId).html(titles[index]);
