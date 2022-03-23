@@ -39,11 +39,11 @@ h1 {
 }
 .answers div button{
     width: 50%;
-    height: 40px;
+    height: fit-content;
     margin: 10px 0;
     font-size: 20px;
     background-color: darkgoldenrod;
-    color: lavender;
+    color: rgb(65, 2, 65);
     border: black solid 3px;
     border-radius: 4px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

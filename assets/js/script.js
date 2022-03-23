@@ -1,7 +1,7 @@
 // Key used to cycle-translate quote
 var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
-const LANG_KEY_ARRAY = ['en', 'ig', 'en'];
+const LANG_KEY_ARRAY = ['en', 'sw', 'es', 'en'];
 const QUOTES_STORE = "quotesStore"
 var quote = "";
 var request = "";
@@ -36,7 +36,7 @@ function getQuotes() {
 	}
 }
 
-// TODO: get random quote and movie title for question. Plus get 3 random titles for incorrect answer
+// Function to get random quote and movie title for question. Plus get 3 random titles for incorrect answer
 function randomQuotes() {
 	var quotes = JSON.parse(localStorage.getItem(QUOTES_STORE)) ?? [];
 	if(quotes.length === 0) {randomQuotes();}
@@ -52,34 +52,24 @@ function randomQuotes() {
 		titles.push(quotes[incorrectTitleIndex].quoteFrom);
 	}
 }
-let titleArray = titles;
 
-//TODO: Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
-function translateQuote() {
+// Function to pass quote through translate-cycle. overwrite quote value till final translate value of english
+async function translateQuote() {
 	for (var index = 0; index < LANG_KEY_ARRAY.length - 1; index++) {
-//TODO: Resolve issue where quote is not being translated in the request (keeps feeding En back in)
+		console.log(quote);
 		request = "https://fast-translate.p.rapidapi.com/fastTranslate/translate?text=" + quote + "&from=" + LANG_KEY_ARRAY[index] + "&langDest=" + LANG_KEY_ARRAY[index + 1];
 		console.log(request);
-		fetch(request, {
+		const response = await fetch(request, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "fast-translate.p.rapidapi.com",
 				"x-rapidapi-key": API_KEY_ARRAY[index]
 			}
 		})
-		.then(function (response) {
-			return response.json();
-		})
-		.then(data => {
-			quote = data.translated_text;
-			console.log(request);
-		})
-		.catch(err => {
-			console.error(err);
-		});
+		const data = await response.json();
+		quote = data.translated_text;
 	}
 	$("#translatedQuote").html(quote);
-	// quoteDisplayed.innerHTML = quote;
 }
 
 function shuffle(array) {
@@ -99,6 +89,7 @@ function shuffle(array) {
 function randomTitles() {
 	correctTitle = titles[0];
 	titles = shuffle(titles);
+	console.log(titles);
 	for(var index = 0; index < titles.length; index++) {
 		var btnId = "#answer-" + (index + 1);
 		$(btnId).html(titles[index]);
@@ -114,7 +105,7 @@ function validateAnswer(element) {
 
 
 getQuotes();
-// randomQuotes();
-// translateQuote();
-// randomTitles();
-// localStorage.clear();
+randomQuotes();
+//translateQuote();
+randomTitles();
+//localStorage.clear();
