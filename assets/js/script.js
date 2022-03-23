@@ -1,7 +1,7 @@
 // Key used to cycle-translate quote
 var titlesDisplayed = document.getElementsByClassName("answers");
 const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
-const LANG_KEY_ARRAY = ['en', 'sw', 'es', 'en'];
+const LANG_KEY_ARRAY = ['en', 'is', 'es', 'en'];
 const QUOTES_STORE = "quotesStore"
 var quote = "";
 var request = "";
@@ -68,10 +68,27 @@ async function translateQuote() {
 		})
 		const data = await response.json();
 		quote = data.translated_text;
+		if(quote.includes("<i>") === true){
+			cleanQuote();
+		}
 	}
 	$("#translatedQuote").html(quote);
 }
 
+// Function to clean broken results from API
+function cleanQuote(){
+	while(quote.includes("<i>")){
+		console.log(quote.includes("<i>"));
+		let iStart = quote.indexOf("<i>");
+		let iEnd = quote.indexOf("</i>") + 4;
+		
+		quote = quote.replace(quote.substring(iStart, iEnd), "");
+	}
+	quote = quote.replace(/<\/?[^>]+(>|$)/g, "");
+	quote = quote.replace("  ", " ");
+}
+
+// Function to shuffle answer options
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
     // While there remain elements to shuffle...
@@ -100,12 +117,13 @@ function validateAnswer(element) {
 	var answer = $(element).text();
 	if(answer === correctTitle) {
 		$(element).addClass("green");
+		location.reload();
 	} else {$(element).addClass("red");}
 }
 
-
-getQuotes();
-randomQuotes();
-//translateQuote();
-randomTitles();
-//localStorage.clear();
+$(document).ready(function(){
+	getQuotes();
+	randomQuotes();
+	translateQuote();
+	randomTitles();
+});
