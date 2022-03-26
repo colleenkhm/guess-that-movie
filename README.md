@@ -19,5 +19,5 @@ And only one title is correct
 
 
 ### Objective Evidence
-![Example Picture](EXAMPLE:/assets/images/example.png?raw=true "Here is an example!")
-[Try it yourself!](EXAMPLE:https://colleenkhm.github.io/guess-that-movie/)
+![Example Picture](/assets/images/example.png?raw=true "Here is an example!")
+[Try it yourself!](https://colleenkhm.github.io/guess-that-movie/)
