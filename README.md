@@ -26,5 +26,5 @@ And only one title is correct
 
 
 ### Objective Evidence
-![Example Picture](EXAMPLE:/assets/images/example.png?raw=true "Here is an example!")
-[Try it yourself!](EXAMPLE:https://dolomiteson.github.io/git-init-mod5-challenge/)
+![Example Picture](/assets/images/example.png?raw=true "Here is an example!")
+[Try it yourself!](https://dolomiteson.github.io/git-init-mod5-challenge/)
