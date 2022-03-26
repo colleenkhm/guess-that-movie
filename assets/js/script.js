@@ -1,6 +1,5 @@
 // Key used to cycle-translate quote
-var titlesDisplayed = document.getElementsByClassName("answers");
-const API_KEY_ARRAY = ["7dfdabab39mshe66929e496b9f2fp1579a2jsn3839847d0fe0", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
+const API_KEY_ARRAY = ["695b7de203msh85a16cf1aaf725bp1958bajsna0fdaffe3744", "dbafd19532msh123cbfa3e8d5b7ap1f5b9fjsn6ee9576f0651", "e2864e38b4msh47717c5089b5460p174591jsn2c1bf2b46b09"];
 const LANG_KEY_ARRAY = ['en', 'is', 'es', 'en'];
 const QUOTES_STORE = "quotesStore"
 var quote = "";
@@ -122,6 +121,7 @@ function validateAnswer(element) {
 $(document).ready(function(){
 	getQuotes();
 	randomQuotes();
-	translateQuote();
+//	translateQuote();
+	$("#translatedQuote").html(quote);
 	randomTitles();
 });

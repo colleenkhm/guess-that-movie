@@ -9,31 +9,35 @@
   <title>Guess That Movie Quote</title>
 </head>
 <body>
-  <header class="center-align">
-    <h1>Guess That Movie</h1>
-  </header>
-  <section class="container">
-    <div class="row quote-container" id="textViewer">
-      <div>
-        <p class="quote center-align" id="translatedQuote"></p>
+  <div class="container">
+    <header class="row center-align">
+      <h1>Guess That Movie</h1>
+    </header>
+    <section class="row" id="game-cont">
+      <div class="tv">
+        <div class="col s12 quote-container" id="textViewer">
+          <div class="valign-wrapper">
+            <p class="quote center-align flow-text" id="translatedQuote"></p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row center-align answers">
-      <div class="col s12">
-        <button id="answer-1" onclick="validateAnswer(this)"></button>
+      <div class="col s12 center-align answers">
+        <div class="row">
+          <button id="answer-1" onclick="validateAnswer(this)"></button>
+        </div>
+        <div class="row">
+          <button id="answer-2" onclick="validateAnswer(this)"></button>
+        </div>
+        <div class="row">
+          <button id="answer-3" onclick="validateAnswer(this)"></button>
+        </div>
+        <div class="row">
+          <button id="answer-4" onclick="validateAnswer(this)"></button>
+        </div>
       </div>
-      <div class="col s12">
-        <button id="answer-2" onclick="validateAnswer(this)"></button>
-      </div>
-      <div class="col s12">
-        <button id="answer-3" onclick="validateAnswer(this)"></button>
-      </div>
-      <div class="col s12">
-        <button id="answer-4" onclick="validateAnswer(this)"></button>
-      </div>
-    </div>
-  </section>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="./assets/js/script.js"></script>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </div>
 </body>
 </html>
