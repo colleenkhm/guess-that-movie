@@ -10,24 +10,38 @@ h1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.quote {
-    font-size: 45px;
-    font-style: italic;
-    font-weight: bolder;
-    color: lavender;
+.tv{
+     border: black solid 5px;
+     background-image: url("../images/woodgrain-1889.svg");
+     background-size: cover;
+     width: 100%;
+     height: 800px;
 }
 
 .quote-container {
-    padding: 30px 0 0 0;
-    background-image: url("../images/tv.jpg");
+    background-image: url(../images/tv.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
-    height: 650px;
-    width: 800px;
+    border: black solid 3px;
+    border-radius: 10% / 50%;
+    margin: 2% 0 auto;
+}
+.quote-container div{
+    margin: auto;
+    width: fit-content;
+    min-height: 650px;
 }
 
-.quote-container div{
-    margin: 50px 100px auto;
-    max-height: 80%;
+.quote {
+    width: fit-content;
+    margin: auto;
+    font-size: 45px;
+    font-style: italic;
+    font-weight: bolder;
+    text-shadow: 2px 2px black;
+    color: lavender;
 }
 
 .answers{
@@ -39,6 +53,7 @@ h1 {
 .answers div button{
     width: 50%;
     height: fit-content;
+    padding: 1%;
     margin: 10px 0;
     font-size: 20px;
     background-color: darkgoldenrod;
