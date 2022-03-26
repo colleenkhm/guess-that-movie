@@ -1,30 +1,23 @@
-# Application: Guess that song!
+# Application: Guess that movie!
 
 ## Description
 
-A song trivia game where the lyrics have been cycled though multiple languages.
-The user must guess the correct song title by the final ouput.
+A trivia game where a random movie quote has been cycled though multiple languages.
+The user must guess the correct movie by the final ouput.
 
 ## Acceptance Criteria Coverage
 
-Given Guess that song application
+Given the Guess That Movie application
 
 When a user opens the app
-Then there should be an intro page
-And the page has instructions on how to play
-And the page has a start button
+Then they are presented with a movie quote
 
-When the user clicks the start button
-Then the user is given a song lyric
-And lyric has been translated through nth amount of languages
-And the lyric is retranslated into english
-
-When the lyric is present
+When the quote is present
 Then the user is presented with multiple answer options
-And those options are the song titles
+And those options are possible movie titles of the original quote
 And only one title is correct
 
 
 ### Objective Evidence
 ![Example Picture](/assets/images/example.png?raw=true "Here is an example!")
-[Try it yourself!](https://dolomiteson.github.io/git-init-mod5-challenge/)
+[Try it yourself!](https://colleenkhm.github.io/guess-that-movie/)
